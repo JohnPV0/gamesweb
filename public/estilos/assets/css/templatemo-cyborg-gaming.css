@@ -334,7 +334,7 @@ Header Style
 --------------------------------------------- 
 */
 
-.background-header {
+/* .background-header {
   background-color: #fff !important;
   height: 70px!important;
   position: fixed!important;
@@ -347,7 +347,7 @@ Header Style
   -o-transition: all .5s ease 0s;
   transition: all .5s ease 0s;
   display: none;
-}
+} */
 
 .header-area {
   background-color: transparent;
@@ -371,10 +371,10 @@ Header Style
   border-radius: 50px;
 }
 
-.background-header .main-nav {
+/* .background-header .main-nav {
   padding: 0px;
   background-color: transparent;
-}
+} */
 
 .header-area .main-nav #search {
   position: relative;
@@ -414,13 +414,13 @@ Header Style
   width: 191px;
 }
 
-.background-header .main-nav .logo {
+/* .background-header .main-nav .logo {
   margin-top: 8px;
 }
 
 .background-header .main-nav .logo img {
   width: 180px;
-}
+} */
 
 .header-area .main-nav .nav {
   display: inline-flex;
@@ -472,10 +472,10 @@ Header Style
   margin-left: 5px;
 }
 
-.header-area .main-nav .nav li.has-sub ul.sub-menu li:last-child a:hover,
+/* .header-area .main-nav .nav li.has-sub ul.sub-menu li:last-child a:hover,
 .background-header .main-nav .nav li.has-sub ul.sub-menu li:last-child a:hover {
   padding-left: 25px !important;
-}
+} */
 
 .header-area .main-nav .nav li:hover a,
 .header-area .main-nav .nav li a.active {
@@ -488,11 +488,11 @@ Header Style
   background-color: #e75e8d !important;
 }
 
-.background-header .main-nav .nav li:hover a,
+/* .background-header .main-nav .nav li:hover a,
 .background-header .main-nav .nav li a.active {
   color: #fff;
   opacity: 1;
-}
+} */
 
 .header-area .main-nav .nav li.has-sub {
   position: relative;
@@ -512,9 +512,9 @@ Header Style
   display: none;
 }
 
-.background-header .main-nav .menu-trigger {
+/* .background-header .main-nav .menu-trigger {
   top: 17px;
-}
+} */
 
 .header-area .main-nav .menu-trigger span,
 .header-area .main-nav .menu-trigger span:before,
@@ -531,11 +531,11 @@ Header Style
   left: 0;
 }
 
-.background-header .main-nav .menu-trigger span,
+/* .background-header .main-nav .menu-trigger span,
 .background-header .main-nav .menu-trigger span:before,
 .background-header .main-nav .menu-trigger span:after {
   background-color: #e75e8d;
-}
+} */
 
 .header-area .main-nav .menu-trigger span:before,
 .header-area .main-nav .menu-trigger span:after {
@@ -552,10 +552,10 @@ Header Style
   width: 75%;
 }
 
-.background-header .main-nav .menu-trigger span:before,
+/* .background-header .main-nav .menu-trigger span:before,
 .background-header .main-nav .menu-trigger span:after {
   background-color: #e75e8d;
-}
+} */
 
 .header-area .main-nav .menu-trigger span:before,
 .header-area .main-nav .menu-trigger span:after {
@@ -598,9 +598,9 @@ Header Style
   background-color: #e75e8d;
 }
 
-.background-header .main-nav .menu-trigger.active span:before {
+/* .background-header .main-nav .menu-trigger.active span:before {
   background-color: #e75e8d;
-}
+} */
 
 .header-area .main-nav .menu-trigger.active span:after {
   -moz-transform: translateY(-6px) translateX(1px) rotate(-45deg);
@@ -609,10 +609,10 @@ Header Style
   transform: translateY(-6px) translateX(1px) rotate(-45deg);
   background-color: #e75e8d;
 }
-
+/* 
 .background-header .main-nav .menu-trigger.active span:after {
   background-color: #e75e8d;
-}
+} */
 
 .header-area.header-sticky {
   min-height: 70px;
@@ -649,12 +649,12 @@ Header Style
     left: 30px;
     top: 15px;
   }
-  .background-header .main-nav .logo {
+  /* .background-header .main-nav .logo {
     top: 0px;
   }
   .background-header .main-nav .border-button {
     top: 0px !important;
-  }
+  } */
   .header-area .main-nav .border-button {
     position: absolute;
     top: 15px;
@@ -701,9 +701,9 @@ Header Style
     margin-top: 65px !important;
     text-align: center;
   }
-  .background-header.header-sticky .nav {
+  /* .background-header.header-sticky .nav {
     margin-top: 70px !important;
-  }
+  } */
   .header-area .main-nav .nav li:first-child {
     border-top: 1px solid #eee;
   }
@@ -1691,9 +1691,9 @@ body {
 }
 
 @media (max-width: 992px) {
-  .background-header {
+  /* .background-header {
   display: inline-block;
-  }
+  } */
   .header-area .main-nav #search {
     display: none;
   }
