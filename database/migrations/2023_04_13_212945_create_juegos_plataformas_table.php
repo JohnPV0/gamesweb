@@ -19,6 +19,11 @@ return new class extends Migration
             $table->integer('total_descargas');
             $table->double('precio_compra', 6, 2);
             $table->double('precio_venta', 6, 2);
+            $table->string('procesador', 255)->nullable();
+            $table->string('memoria_ram', 255)->nullable();
+            $table->string('disco_duro', 255)->nullable();
+            $table->string('tarjeta_grafica', 255)->nullable();
+            $table->string('sistema_operativo', 255)->nullable();
             $table->integer('status');
             $table->timestamps();
         });

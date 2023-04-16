@@ -18,6 +18,11 @@ class Juegos_plataformas extends Model
         'total_descargas',
         'precio_compra',
         'precio_venta',
+        'procesador',
+        'memoria_ram',
+        'disco_duro',
+        'tarjeta_grafica',
+        'sistema_operativo',
         'status',
     ];
 
@@ -29,10 +34,5 @@ class Juegos_plataformas extends Model
     public function plataformas()
     {
         return $this->belongsTo('App\Models\Plataformas', 'id_plataforma', 'id');
-    }
-
-    public function especificaciones()
-    {
-        return $this->hasOne('App\Models\Especificaciones', 'id_juego_plataforma', 'id');
     }
 }
