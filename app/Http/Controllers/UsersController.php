@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Models\Users;
 use App\Models\Paises;
-use APp\Models\Entidades;
+use App\Models\Entidades;
 use App\Models\Municipios;
-use APP\Models\Tipos_usuario;
+use App\Models\Tipos_usuario;
 
 class UsersController extends Controller
 {

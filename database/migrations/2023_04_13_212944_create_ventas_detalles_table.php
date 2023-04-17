@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('id_venta')->references('id')->on('ventas');
             $table->foreignId('id_juego')->references('id')->on('juegos');
+            $table->foreignId('id_plataforma')->references('id')->on('plataformas');
             $table->integer('cantidad');
             $table->double('precio_compra', 6, 2);
             $table->double('precio_venta', 6, 2);

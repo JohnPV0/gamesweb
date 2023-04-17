@@ -22,7 +22,7 @@ class Tipos_usuarioController extends Controller
      */
     public function create()
     {
-        return viwe('TiposUsuario.create');
+        return view('TiposUsuario.create');
     }
 
     /**
@@ -40,8 +40,8 @@ class Tipos_usuarioController extends Controller
      */
     public function show(string $id)
     {
-        $tipos_usuario = Tipos_usuario::find($id);
-        return view('TiposUsuario.read')->with('tipos_usuario', $tipos_usuario);
+        $tipo_usuario = Tipos_usuario::find($id);
+        return view('TiposUsuario.read')->with('tipo_usuario', $tipo_usuario);
     }
 
     /**
@@ -49,8 +49,8 @@ class Tipos_usuarioController extends Controller
      */
     public function edit(string $id)
     {
-        $tipos_usuario = Tipos_usuario::find($id);
-        return view('TiposUsuario.edit')->with('tipos_usuario', $tipos_usuario);
+        $tipo_usuario = Tipos_usuario::find($id);
+        return view('TiposUsuario.edit')->with('tipo_usuario', $tipo_usuario);
     }
 
     /**

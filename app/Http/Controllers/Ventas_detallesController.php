@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Ventas_detalles;
 use App\Models\Ventas;
 use App\Models\Juegos;
+use App\Models\Plataformas;
 
 class Ventas_detallesController extends Controller
 {
@@ -24,13 +25,16 @@ class Ventas_detallesController extends Controller
      */
     public function create()
     {
-        $ventas = Ventas::select('id','fecha')
+        $ventas = Ventas::select('id','fecha','id_cliente')
                   ->orderBy('fecha')->get();
         $juegos = Juegos::select('id','nombre')
                   ->orderBy('nombre')->get();
+        $plataformas = Plataformas::select('id','nombre')
+                ->orderBy('nombre')->get();
         return view('VentasDetalles.create')
                 ->with('ventas', $ventas)
-                ->with('juegos', $juegos);
+                ->with('juegos', $juegos)
+                ->with('plataformas', $plataformas);
     }
 
     /**
@@ -48,8 +52,8 @@ class Ventas_detallesController extends Controller
      */
     public function show(string $id)
     {
-        $ventas_detalle = Ventas_detalles::find($id);
-        return view('VentasDetalles.read')->with('ventas_detalle', $ventas_detalle);
+        $venta_detalle = Ventas_detalles::find($id);
+        return view('VentasDetalles.read')->with('ventas_detalle', $venta_detalle);
     }
 
     /**
@@ -57,15 +61,18 @@ class Ventas_detallesController extends Controller
      */
     public function edit(string $id)
     {
-        $ventas_detalle = Ventas_detalles::find($id);
-        $ventas = Ventas::select('id','fecha')
+        $venta_detalle = Ventas_detalles::find($id);
+        $ventas = Ventas::select('id','fecha', 'id_cliente')
                   ->orderBy('fecha')->get();
         $juegos = Juegos::select('id','nombre')
                   ->orderBy('nombre')->get();
+        $plataformas = Plataformas::select('id','nombre')
+                ->orderBy('nombre')->get();
         return view('VentasDetalles.edit')
-                ->with('ventas_detalle', $ventas_detalle)
+                ->with('ventas_detalle', $venta_detalle)
                 ->with('ventas', $ventas)
-                ->with('juegos', $juegos);
+                ->with('juegos', $juegos)
+                ->with('plataformas', $plataformas);
     }
 
     /**

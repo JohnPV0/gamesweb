@@ -14,6 +14,7 @@ class Ventas_detalles extends Model
     protected $fillable = [
         'id_venta',
         'id_juego',
+        'id_plataforma',
         'cantidad',
         'precio_compra',
         'precio_venta',
@@ -28,5 +29,10 @@ class Ventas_detalles extends Model
     public function juegos()
     {
         return $this->belongsTo('App\Models\Juegos', 'id_juego', 'id');
+    }
+
+    public function plataformas() 
+    {
+        return $this->belongsTo('App\Models\Plataformas', 'id_plataforma', 'id');
     }
 }
