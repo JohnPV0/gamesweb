@@ -3,14 +3,14 @@
 
 
 <!-- ***** Banner Start ***** -->
-<div class="main-banner">
+<div class="main-banner" id="banner">
     <div class="row">
         <div class="col-lg-7">
             <div class="header-text">
-                <h6>Welcome To Cyborg</h6>
-                <h4><em>Browse</em> Our Popular Games Here</h4>
+                <h6>Bienvenido a Cyborg</h6>
+                <h4><em>Busca</em> nuestros mejores juegos aqui</h4>
                 <div class="main-button">
-                    <a href="browse.html">Browse Now</a>
+                    <a href="#" id="buscar">Buscar ahora</a>
                 </div>
             </div>
         </div>
@@ -19,102 +19,69 @@
 <!-- ***** Banner End ***** -->
 
 <!-- ***** Most Popular Start ***** -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="alert alert-success" id="respuesta">
+            
+        </div>
+    </div>
+</div>
+
+<div class="most-popular" id="juegos_generales">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="row">
+            <div class="col-lg-2 col-sm-6">
+                    <div class="main-border-button" style="width=100%; height=100%;">
+                        <a href="">
+                            Todos
+                        </a>
+                    </div>
+                </div>
+                @foreach($plataformas as $plataforma)
+                <div class="col-lg-2 col-sm-6">
+                    <div class="main-border-button" style="width=100%; height=100%;">
+                        <a href="">
+                            {!! $plataforma->nombre !!}
+                        </a>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+</div>
 <div class="most-popular">
     <div class="row">
         <div class="col-lg-12">
             <div class="heading-section">
-                <h4><em>Most Popular</em> Right Now</h4>
+                <h4><em>Juegos más populares</em> Ahora</h4>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="item">
-                        <img src="assets/images/popular-01.jpg" alt="">
-                        <h4>Fortnite<br><span>Sandbox</span></h4>
-                        <ul>
-                            <li><i class="fa fa-star"></i> 4.8</li>
-                            <li><i class="fa fa-download"></i> 2.3M</li>
-                        </ul>
+                @foreach($juegos as $juego)
+                <div class="col-lg-4 col-sm-6">
+                    <div class="main-button">
+                            <a href="#" onclick="agregarCarrito({!! $juego->id_juego !!}, {!! $juego->id_plataforma !!})">Agregar al carrito</a>
                     </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="item">
-                        <img src="assets/images/popular-02.jpg" alt="">
-                        <h4>PubG<br><span>Battle S</span></h4>
-                        <ul>
-                            <li><i class="fa fa-star"></i> 4.8</li>
-                            <li><i class="fa fa-download"></i> 2.3M</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="item">
-                        <img src="assets/images/popular-03.jpg" alt="">
-                        <h4>Dota2<br><span>Steam-X</span></h4>
-                        <ul>
-                            <li><i class="fa fa-star"></i> 4.8</li>
-                            <li><i class="fa fa-download"></i> 2.3M</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="item">
-                        <img src="assets/images/popular-04.jpg" alt="">
-                        <h4>CS-GO<br><span>Legendary</span></h4>
-                        <ul>
-                            <li><i class="fa fa-star"></i> 4.8</li>
-                            <li><i class="fa fa-download"></i> 2.3M</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="item">
-                        <div class="row">
-                            <div class="col-lg-6 col-sm-6">
-                                <div class="item inner-item">
-                                    <img src="assets/images/popular-05.jpg" alt="">
-                                    <h4>Mini Craft<br><span>Legendary</span></h4>
-                                    <ul>
-                                        <li><i class="fa fa-star"></i> 4.8</li>
-                                        <li><i class="fa fa-download"></i> 2.3M</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-6">
-                                <div class="item">
-                                    <img src="assets/images/popular-06.jpg" alt="">
-                                    <h4>Eagles Fly<br><span>Matrix Games</span></h4>
-                                    <ul>
-                                        <li><i class="fa fa-star"></i> 4.8</li>
-                                        <li><i class="fa fa-download"></i> 2.3M</li>
-                                    </ul>
-                                </div>
-                            </div>
+                    <a href="">
+                    
+                        <div class="item">
+                            <img src="../storage/juegosfotos/{!! $juego->ruta !!}" alt="">
+                            <h4>{!! $juego->juegos->nombre !!}<br><span>{!! $juego->plataformas->nombre !!}</span></h4>
+                            <ul>
+                                <li><i class="fa fa-star"></i> {!! $juego->juegos->puntuacion !!}</li>
+                                <li><i class="fa fa-download"></i> {!! $juego->total_descargas !!}</li>
+                            </ul>
                         </div>
-                    </div>
+                       
+                    </a>
+                    
                 </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="item">
-                        <img src="assets/images/popular-07.jpg" alt="">
-                        <h4>Warface<br><span>Max 3D</span></h4>
-                        <ul>
-                            <li><i class="fa fa-star"></i> 4.8</li>
-                            <li><i class="fa fa-download"></i> 2.3M</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="item">
-                        <img src="assets/images/popular-08.jpg" alt="">
-                        <h4>Warcraft<br><span>Legend</span></h4>
-                        <ul>
-                            <li><i class="fa fa-star"></i> 4.8</li>
-                            <li><i class="fa fa-download"></i> 2.3M</li>
-                        </ul>
-                    </div>
-                </div>
+                @endforeach
                 <div class="col-lg-12">
                     <div class="main-button">
-                        <a href="browse.html">Discover Popular</a>
+                        <a href="browse.html">Descubrir más juegos</a>
                     </div>
                 </div>
             </div>
@@ -124,7 +91,7 @@
 <!-- ***** Most Popular End ***** -->
 
 <!-- ***** Gaming Library Start ***** -->
-<div class="gaming-library">
+<!-- <div class="gaming-library">
     <div class="col-lg-12">
         <div class="heading-section">
             <h4><em>Your Gaming</em> Library</h4>
@@ -195,7 +162,7 @@
             <a href="profile.html">View Your Library</a>
         </div>
     </div>
-</div>
+</div> -->
 <!-- ***** Gaming Library End ***** -->
 
 

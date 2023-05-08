@@ -55,10 +55,14 @@ return [
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
             'throw' => false,
         ],
-        'fotografias' => [
+        'juegosfotos' => [
             'driver' => 'local',
-            'root' => storage_path('fotografias'),
-        ]
+            'root' => storage_path('juegosfotos'),
+        ],
+        'usersfotos' => [
+            'driver' => 'local',
+            'root' => storage_path('usersfotos'),
+        ],
 
     ],
 

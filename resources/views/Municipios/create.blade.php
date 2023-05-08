@@ -16,23 +16,40 @@
                     <ul>
                         <li>
                             {!! Form::open(['url'=>'/municipios']) !!}
+                            {!! Form::label ('id_pais','Pais:') !!}
+                            <span>
+                                {!! Form::select ('id_pais', $paises->pluck('nombre','id')->all() , null
+                                ,[
+                                    'placeholder'=>'Seleccionar ...',
+                                    'class'=>'form-control',
+                                    'onchange'=>'cargarEntidades(this.value);'
+                                    ]) !!}
+                            </span>
+                        </li>
+                        <li>
                             {!! Form::label ('id_entidad','Entidad:') !!}
                             <span>
-                                {!! Form::select ('id_entidad', $entidades->pluck('nombre','id')->all() , null
-                                ,['placeholder'=>'Seleccionar ...']) !!}
+                                {!! Form::select ('id_entidad', array(''=>'') , null
+                                ,[
+                                    'placeholder'=>'Seleccionar ...',
+                                    'class'=>'form-control'
+                                    ]) !!}
                             </span>
                         </li>
                         <li>
                             {!! Form::label ('nombre','Nombre del municipio') !!}
                             <span>
-                                {!! Form::text ('nombre',null,['placeholder'=>'Ingresa nombre del municipio']) !!}
+                                {!! Form::text ('nombre',null,[
+                                    'placeholder'=>'Ingresa nombre del municipio',
+                                    'class'=>'form-control'
+                                    ]) !!}
                             </span>
                         </li>
                         <li>
                             {!! Form::label ('status','Status:') !!}
                             <span>
                                 {!! Form::select ('status',
-                                array('1'=>'Activo','0'=>'Baja') , null ,['placeholder'=>'Seleccionar ...']) !!}
+                                array('1'=>'Activo','0'=>'Baja') , null ,['placeholder'=>'Seleccionar ...', 'class'=>'form-control']) !!}
                             </span>
                         </li>
                         <li>
@@ -48,5 +65,6 @@
     </div>
 </div>
 <!-- ***** Banner End ***** -->
+
 
 @endsection()

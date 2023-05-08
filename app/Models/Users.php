@@ -27,6 +27,7 @@ class Users extends Model
         'cp',
         'fecha_naci',
         'username',
+        'password',
         'status'
     ];
 

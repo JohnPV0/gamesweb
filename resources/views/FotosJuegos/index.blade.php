@@ -12,6 +12,7 @@
         <tr>
             <th>ID</th>
             <th>Juego</th>
+            <th>Foto</th>
             <th>Ruta</th>
             <th>Status</th>    
             <th>Acciones</th>
@@ -20,6 +21,7 @@
         <tr>
             <td>{!! $foto->id !!}</td>
             <td>{!! $foto->juegos->nombre !!}</td>
+            <td><img src="../storage/juegosfotos/{!! $foto->ruta !!}" alt=""></td>
             <td>{!! $foto->ruta !!}</td>
             <td>{!! $foto->status !!}</td>           
             <td>

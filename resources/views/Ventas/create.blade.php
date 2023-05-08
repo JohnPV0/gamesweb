@@ -66,7 +66,7 @@
                             {!! Form::label ('status','Status:') !!}
                             <span>
                                 {!! Form::select ('status',
-                                array('1'=>'Activo','0'=>'Baja') , null ,['placeholder'=>'Seleccionar ...']) !!}
+                                    array('2'=>'Finalizar venta', '1'=>'En carrito','0'=>'Baja') , null ,['placeholder'=>'Seleccionar ...']) !!}
                             </span>
                         </li>
                         <li>

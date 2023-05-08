@@ -5,16 +5,14 @@
 <h1>LIstado de juegos y sus plataformas</h1>
 
 <div class="main-border-button">
-    <a href="juegos_plataformas/create">Crear un nuevo juego en una plataforma</a>
+    <a href="juegos_plataformas/create?ocultar=0">Crear un nuevo juego en una plataforma</a>
 </div>
 
 <table style="color: white;">
     <tr>
         <th>ID</th>
-        <th>ID Juego</th>
-        <th>Nombre juego</th>
-        <th>ID Plataforma</th>
-        <th>Nombre plataforma</th>
+        <th>Juego</th>
+        <th>Plataforma</th>
         <th>Stock</th>
         <th>Total descargas</th>
         <th>Precio compra</th>
@@ -25,9 +23,7 @@
     @foreach($juegos_plataformas as $jp)
     <tr>
         <td>{!! $jp->id !!}</td>
-        <td>{!! $jp->id_juego !!}</td>
         <td>{!! $jp->juegos->nombre !!}</td>
-        <td>{!! $jp->id_plataforma !!}</td>
         <td>{!! $jp->plataformas->nombre !!}</td>
         <td>{!! $jp->stock !!}</td>
         <td>{!! $jp->total_descargas !!}</td>
@@ -35,10 +31,13 @@
         <td>{!! $jp->precio_venta !!}</td>
         <td>{!! $jp->status !!}</td>
         <td>
+            
             <a href="{!! 'juegos_plataformas/'.$jp->id !!}">Detalle</a>
-            <a href="{!! 'juegos_plataformas/'.$jp->id.'/edit' !!}">Editar</a>
-
-
+            @if($jp->plataformas->id == 5)
+            <a href="{!! 'juegos_plataformas/'.$jp->id.'/edit?ocultar=1' !!}">Editar</a>
+            @else
+            <a href="{!! 'juegos_plataformas/'.$jp->id.'/edit?ocultar=0' !!}">Editar</a>
+            @endif
             {!! Form::open(['method' => 'DELETE' , 'url' => '/juegos_plataformas/'.$jp->id]) !!}
             {!! Form::submit('Eliminar') !!}
             {!! Form::close() !!}

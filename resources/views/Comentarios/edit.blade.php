@@ -14,7 +14,7 @@
                 <div class="col-lg-8 align-self-center">
                     <ul>
                         <li>
-                            {!! Form::open([ 'method' => 'PATCH' , 'url'=>'/comentarios/'.$categoria->id]) !!}
+                            {!! Form::open([ 'method' => 'PATCH' , 'url'=>'/comentarios/'.$comentario->id]) !!}
                             {!! Form::label ('id_juego','Juego') !!}
                             <span>
                                 {!! Form::select ('id_juego', $juegos->pluck('nombre','id')->all() , $comentario->id_juego

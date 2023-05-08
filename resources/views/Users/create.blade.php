@@ -15,10 +15,12 @@
                 <div class="col-lg-8 align-self-center">
                     <ul>
                     <li>
-                        {!! Form::open(['url'=>'/users']) !!}
-                        {!! Form::label ('ruta_foto_perfil','Nombre') !!}
+                        {!! Form::open(['url'=>'/users', 'enctype'=>'multipart/form-data']) !!}
+                        {!! Form::hidden('ruta_foto_perfil', 'usersfotos') !!}
+
+                        {!! Form::label ('foto','Foto de perfil') !!}
                             <span>
-                                {!! Form::file('ruta_foto_perfil', ['accept' => 'image/*']) !!}
+                                {!! Form::file('foto', ['accept' => 'image/*']) !!}
                             </span>
                         </li>
                         <li>
@@ -48,7 +50,7 @@
                         <li>
                             {!! Form::label ('telefono', 'Telefono') !!}
                             <span>
-                            {!! Form::text ('Telefono', null, ['placeholder'=>'Ingresa el nivel', 'onkeypress' =>
+                            {!! Form::text ('telefono', null, ['placeholder'=>'Ingresa el nivel', 'onkeypress' =>
                                 'return event.charCode >= 48 && event.charCode <= 57']) !!}
                             </span>
                         </li>
@@ -61,19 +63,26 @@
                         <li>
                             {!! Form::label ('id_pais', 'Pais') !!}
                             <span>
-                                {!! Form::select('id_pais', $paises->pluck('nombre','id')->toArray(), null, ['placeholder'=>'Seleccionar ...']) !!}
+                                {!! Form::select('id_pais', $paises->pluck('nombre','id')->toArray(), null, 
+                                    [
+                                        'placeholder'=>'Seleccionar ...',
+                                        'onchange'=>'cargarEntidades(this.value);'
+                                    ]) !!}
                             </span>
                         </li>
                         <li>
                             {!! Form::label ('id_entidad', 'Entidad') !!}
                             <span>
-                                {!! Form::select('id_entidad', $entidades->pluck('nombre','id')->toArray(), null, ['placeholder'=>'Seleccionar ...']) !!}
+                                {!! Form::select('id_entidad', array(''=>''), null, [
+                                    'placeholder'=>'Seleccionar ...',
+                                    'onchange'=>'cargarMunicipios(this.value);'
+                                    ]) !!}
                             </span>
                         </li>
                         <li>
                             {!! Form::label('municipio_id', 'Municipio') !!}
                             <span>
-                                {!! Form::select('municipio_id', $municipios->pluck('nombre','id')->toArray(), null, ['placeholder'=>'Seleccionar ...']) !!}
+                                {!! Form::select('municipio_id', array(''=>''), null, ['placeholder'=>'Seleccionar ...']) !!}
                             </span>
                         </li>
                         <li>

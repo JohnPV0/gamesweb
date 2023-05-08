@@ -9,6 +9,7 @@
 <table style="color: white;">
     <tr>
         <th>ID</th>
+        <th>Foto de perfil</th>
         <th>Nombre</th>
         <th>Apellido paterno</th>
         <th>Apellido materno</th>
@@ -21,6 +22,9 @@
     @foreach($users as $user)
     <tr>
         <td>{!! $user->id !!}</td>
+        <td>
+            <img src="../storage/usersfotos/{!! $user->ruta_foto_perfil !!}" alt="" width="100px" height="100px">
+        </td>
         <td>{!! $user->nombre !!}</td>
         <td>{!! $user->ap_pat !!}</td>
         <td>{!! $user->ap_mat !!}</td>

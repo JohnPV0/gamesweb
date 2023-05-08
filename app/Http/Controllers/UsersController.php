@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 use App\Models\Users;
 use App\Models\Paises;
 use App\Models\Entidades;
 use App\Models\Municipios;
 use App\Models\Tipos_usuario;
+use Illuminate\Support\Facades\Storage;
 
 class UsersController extends Controller
 {
@@ -27,18 +29,15 @@ class UsersController extends Controller
     public function create()
     {
         $paises = Paises::select('id','nombre')
-                  ->orderBy('nombre')->get();
-        $entidades = Entidades::select('id','nombre')
-                  ->orderBy('nombre')->get();
-        $municipios = Municipios::select('id','nombre')
-                  ->orderBy('nombre')->get();
+                    ->where('status', 1)
+                    ->orderBy('nombre')->get();
         $tipos_usuario = Tipos_usuario::select('id','nombre')
-                  ->orderBy('nombre')->get();
+                    ->where('status', 1)
+                    ->orderBy('nombre')->get();
         return view('Users.create')
                 ->with('paises',$paises)
-                ->with('entidades',$entidades)
-                ->with('municipios',$municipios)
                 ->with('tipos_usuario',$tipos_usuario);
+                
     }
 
     /**
@@ -47,8 +46,32 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         $datos = $request->all();
+
+        $datos['password'] = Hash::make($request->input('password'));
+        $archivo = request()->file('foto');
+
+        if (!is_null($archivo)){
+            $hora = date('h-i-s');
+            $fecha = date('d-m-Y'); 
+            $prefijo = $fecha."_".$hora;
+            $nombre_foto = $prefijo."_".$archivo->getClientOriginalName();
+            $r1 = Storage::disk("usersfotos")->put($nombre_foto, \File::get($archivo));
+
+            if ($r1) {
+                $datos['ruta_foto_perfil'] = $nombre_foto;
+                Users::create($datos);
+                return redirect('/users');
+            } else {
+                return 'Error al intentar guardar la foto <br> <br> <a href="./users">Regresar</a>';
+            }
+        }
+        $datos['ruta_foto_perfil'] = 'default_foto_perfil.jpg';
         Users::create($datos);
         return redirect('/users');
+
+        
+
+       
     }
 
     /**
@@ -67,13 +90,19 @@ class UsersController extends Controller
     {
         $user = Users::find($id);
         $paises = Paises::select('id','nombre')
-                  ->orderBy('nombre')->get();
+                    ->where('status', 1)
+                    ->orderBy('nombre')->get();
         $entidades = Entidades::select('id','nombre')
-                  ->orderBy('nombre')->get();
+                    ->where('id_pais', $user->municipios->entidades->id_pais)
+                    ->where('status', 1)
+                    ->orderBy('nombre')->get();
         $municipios = Municipios::select('id','nombre')
-                  ->orderBy('nombre')->get();
+                    ->where('id_entidad', $user->municipios->id_entidad)
+                    ->where('status', 1)
+                    ->orderBy('nombre')->get();
         $tipos_usuario = Tipos_usuario::select('id','nombre')
-                  ->orderBy('nombre')->get();
+                    ->where('status', 1)
+                    ->orderBy('nombre')->get();
         return view('Users.edit')
                 ->with('user',$user)
                 ->with('paises',$paises)
@@ -89,6 +118,27 @@ class UsersController extends Controller
     {
         $datos = $request->all();
         $user = Users::find($id);
+
+        $datos['password'] = Hash::make($request->input('password'));
+
+        $archivo = request()->file('foto');
+        if (!is_null($archivo)){
+            $hora = date('h-i-s');
+            $fecha = date('d-m-Y'); 
+            $prefijo = $fecha."_".$hora;
+            $nombre_foto = $prefijo."_".$archivo->getClientOriginalName();
+            $r1 = Storage::disk("usersfotos")->put($nombre_foto, \File::get($archivo));
+
+            if ($r1) {
+                $datos['ruta_foto_perfil'] = $nombre_foto;
+                $user->update($datos);
+                return redirect('/users');
+            } else {
+                return 'Error al intentar guardar la foto <br> <br> <a href="./users">Regresar</a>';
+            }
+        }
+        $datos['ruta_foto_perfil'] = 'default_foto_perfil.jpg';
+
         $user->update($datos);
         return redirect('/users');
     }
@@ -102,5 +152,10 @@ class UsersController extends Controller
         $user->status = 0;
         $user->save();
         return redirect('/users');
+    }
+
+    public function login()
+    {
+        return view('Users.login');
     }
 }

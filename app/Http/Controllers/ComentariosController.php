@@ -58,7 +58,7 @@ class ComentariosController extends Controller
     public function edit(string $id)
     {
         $comentario = Comentarios::find($id);
-        $juegos = Juegos::select('id', 'username')->orderBy('nombre')->get();
+        $juegos = Juegos::select('id', 'nombre')->orderBy('nombre')->get();
         $usuarios = Users::select('id', 'username')->orderBy('username')->get();
         return view('Comentarios.edit')
                 ->with('comentario', $comentario)

@@ -84,4 +84,13 @@ class EntidadesController extends Controller
         $entidad->save();
         return redirect('/entidades');
     }
+
+    public function cargarEntidades($id_pais)
+    {
+        $entidades = Entidades::select('id', 'nombre')
+                            ->where('id_pais', $id_pais)
+                            ->where('status', 1)
+                            ->orderBy('nombre')->get();
+        return $entidades;
+    }
 }

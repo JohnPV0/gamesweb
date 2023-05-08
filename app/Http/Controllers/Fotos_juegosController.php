@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Storage;
 use App\Models\Fotos_juegos;
 use App\Models\Juegos;
 
@@ -33,8 +35,23 @@ class Fotos_juegosController extends Controller
     public function store(Request $request)
     {
         $datos = $request->all();
-        Fotos_juegos::create($datos);
-        return redirect('/fotos_juegos');
+        $hora = date('h-i-s');
+        $fecha = date('d-m-Y'); 
+        $prefijo = $fecha."_".$hora;
+
+        $archivo = request()->file('foto');
+        $nombre_foto = $prefijo."_".$archivo->getClientOriginalName();
+
+
+        $r1 = Storage::disk("juegosfotos")->put($nombre_foto, \File::get($archivo));
+
+        if ($r1) {
+            $datos['ruta'] = $nombre_foto;
+            Fotos_juegos::create($datos);
+            return redirect('/fotos_juegos');
+        } else {
+            return 'Error al intentar guardar la foto <br> <br> <a href="./fotos_juegos">Regresar</a>';
+        }
     }
 
     /**
@@ -64,10 +81,26 @@ class Fotos_juegosController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $datos = $request()->all();
+        $datos = $request->all();
         $foto_juego = Fotos_juegos::find($id);
-        $foto_juego->update($datos);
-        return redirect('/fotos_juegos');
+
+        $hora = date('h-i-s');
+        $fecha = date('d-m-Y'); 
+        $prefijo = $fecha."_".$hora;
+
+        $archivo = request()->file('foto');
+        $nombre_foto = $prefijo."_".$archivo->getClientOriginalName();
+
+
+        $r1 = Storage::disk("juegosfotos")->put($nombre_foto, \File::get($archivo));
+
+        if ($r1){
+            $datos['ruta'] = $nombre_foto;
+            $foto_juego->update($datos);
+            return redirect('/fotos_juegos');
+        } else {
+            return 'Error al intentar guardar la foto <br> <br> <a href="./fotos_juegos">Regresar</a>';
+        }
     }
 
     /**

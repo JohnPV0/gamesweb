@@ -15,18 +15,34 @@
                     <ul>
                         <li>
                             {!! Form::open([ 'method' => 'PATCH' , 'url'=>'/municipios/'.$municipio->id]) !!}
+                            {!! Form::label ('id_pais','Pais:') !!}
+                            <span>
+                                {!! Form::select ('id_pais', $paises->pluck('nombre','id')->all() ,
+                                $municipio->entidades->id_pais
+                                ,[
+                                    'placeholder'=>'Seleccionar ...',
+                                    'class'=>'form-control',
+                                    'onchange'=>'cargarEntidades(this.value);'
+                                    ]) !!}
+                            </span>
+                        </li>
+                        <li>
                             {!! Form::label ('id_entidad','Entidad:') !!}
                             <span>
                                 {!! Form::select ('id_entidad', $entidades->pluck('nombre','id')->all() ,
                                 $municipio->id_entidad
-                                ,['placeholder'=>'Seleccionar ...']) !!}
+                                ,[
+                                    'placeholder'=>'Seleccionar ...',
+                                    'class'=>'form-control', 
+                                    'onchange'=>'cargarMunicipios(this.value);'
+                                    ]) !!}
                             </span>
                         </li>
                         <li>
                             {!! Form::label ('nombre','Nombre del municipio') !!}
                             <span>
                                 {!! Form::text ('nombre',$municipio->nombre,['placeholder'=>'Ingresa nombre del
-                                municipio']) !!}
+                                municipio', 'class'=>'form-control']) !!}
                             </span>
                         </li>
                         <li>
@@ -34,7 +50,7 @@
                             <span>
                                 {!! Form::select ('status',
                                 array('1'=>'Activo','0'=>'Baja') , $municipio->status ,['placeholder'=>'Seleccionar
-                                ...']) !!}
+                                ...','class'=>'form-control']) !!}
                             </span>
                         </li>
                         <li>

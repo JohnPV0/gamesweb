@@ -24,9 +24,11 @@ class Juegos_plataformasController extends Controller
     public function create()
     {
         $juegos = Juegos::select('id','nombre')
-                  ->orderBy('nombre')->get();
+                    ->where('status', 1)
+                    ->orderBy('nombre')->get();
         $plataformas = Plataformas::select('id','nombre')
-                  ->orderBy('nombre')->get();
+                    ->where('status', 1)
+                    ->orderBy('nombre')->get();
         return view('JuegosPlataformas.create')
                 ->with('juegos', $juegos)
                 ->with('plataformas', $plataformas);
@@ -58,10 +60,13 @@ class Juegos_plataformasController extends Controller
     {
         $juego_plataforma = Juegos_plataformas::find($id);
         $juegos = Juegos::select('id','nombre')
-                  ->orderBy('nombre')->get();
+                    ->where('status', 1)
+                    ->orderBy('nombre')->get();
         $plataformas = Plataformas::select('id','nombre')
-                  ->orderBy('nombre')->get();
+                    ->where('status', 1)
+                    ->orderBy('nombre')->get();
         return view('JuegosPlataformas.edit')
+                ->with('show', false)
                 ->with('juego_plataforma', $juego_plataforma)
                 ->with('juegos', $juegos)
                 ->with('plataformas', $plataformas);

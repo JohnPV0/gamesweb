@@ -27,22 +27,41 @@
                         <!-- ***** Search End ***** -->
                         <div class="search-input">
                             <form id="search" action="#">
-                                <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword"
+                                <input type="text" placeholder="Buscar" id='searchText' name="searchKeyword"
                                     onkeypress="handle" />
                                 <i class="fa fa-search"></i>
                             </form>
                         </div>
+
                         <!-- ***** Search End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li><a href="{{ asset('home') }}" @if(request()->is('inicio')) class="active"
-                                    @endif>HOME</a></li>
-                            <li><a href="{{ asset('cruds') }}" @if(request()->is('cruds')) class="active"
-                                    @endif>CRUDS</a></li>
-                            <li><a href="details.html">Details</a></li>
-                            <li><a href="streams.html">Streams</a></li>
-                            <li><a href="profile.html">Profile <img
-                                        src="{{ asset('estilos/assets/images/profile-header.jpg') }}" alt=""></a></li>
+                            <li>
+                                <a href="{{ asset('home') }}" @if(request()->is('home')) class="active" @endif>
+                                    Inicio  
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ asset('cruds') }}" @if(request()->is('cruds')) class="active" @endif>
+                                    Cruds
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ asset('contacto') }}" @if(request()->is('contacto')) class="active" @endif>
+                                    Contacto
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ asset('ver_carrito') }}" @if(request()->is('ver_carrito')) class="active" @endif>
+                                    <i class="fa fa-cart-shopping" ></i> 
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ asset('login') }}"  @if(request()->is('login')) class="active" @endif>
+                                    Iniciar sesión 
+                                    <img src="{{ asset('estilos/assets/images/profile-header.jpg') }}" alt="">
+                                </a>
+                            </li>
                         </ul>
                         <a class='menu-trigger'>
                             <span>Menu</span>

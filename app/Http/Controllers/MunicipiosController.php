@@ -27,9 +27,11 @@ class MunicipiosController extends Controller
     public function create()
     {
         $entidades = Entidades::select('id','nombre')
-                  ->orderBy('nombre')->get();
+                    ->where('status', 1)
+                    ->orderBy('nombre')->get();
         $paises = Paises::select('id','nombre')
-                  ->orderBy('nombre')->get();          
+                    ->where('status', 1)
+                    ->orderBy('nombre')->get();          
         return view('Municipios.create')
                 ->with('entidades',$entidades)
                 ->with('paises',$paises);
@@ -61,6 +63,8 @@ class MunicipiosController extends Controller
     {
         $municipio = Municipios::find($id);
         $entidades = Entidades::select('id','nombre')
+                  ->where('id_pais', $municipio->entidades->id_pais)
+                  ->where('status', 1)
                   ->orderBy('nombre')->get();
         $paises = Paises::select('id','nombre')
                   ->orderBy('nombre')->get();           
@@ -90,5 +94,14 @@ class MunicipiosController extends Controller
         $municipio->status = 0;
         $municipio->save();
         return redirect('/municipios');
+    }
+
+    public function cargarMunicipios($id_entidad) 
+    {
+        $municipios = Municipios::select('id','nombre')
+                        ->where('id_entidad', $id_entidad)
+                        ->where('status', 1)
+                        ->orderBy('nombre')->get();
+        return $municipios;
     }
 }

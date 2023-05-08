@@ -53,7 +53,12 @@
         </div>
         <div class="col-lg-12">
             <div class="item">
-                <h4>Entidad</h4><span style="color: white;">{!! $user->entidad->nombre !!}</span>
+                <h4>Entidad</h4><span style="color: white;">{!! $user->entidades->nombre !!}</span>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="item">
+                <h4>Municipio</h4><span style="color: white;">{!! $user->municipios->nombre !!}</span>
             </div>
         </div>
         <div class="col-lg-12">
@@ -74,6 +79,11 @@
         <div class="col-lg-12">
             <div class="item">
                 <h4>Username</h4><span style="color: white;">{!! $user->username !!}</span>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="item">
+                <h4>Password</h4><span style="color: white;">{!! $user->password !!}</span>
             </div>
         </div>
         <div class="col-lg-12">

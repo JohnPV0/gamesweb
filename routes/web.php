@@ -16,6 +16,8 @@ use App\Http\Controllers\Tipos_usuarioController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\Ventas_detallesController;
 use App\Http\Controllers\VentasController;
+use App\Http\Controllers\CorreoController;
+use App\Http\Controllers\AjaxController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,17 +30,17 @@ use App\Http\Controllers\VentasController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
-
-Route::get('/home', function () {
-    return view('home');
-});
+Route::get('/', [AjaxController::class,'verJuegos']);
+Route::get('/home', [AjaxController::class,'verJuegos']);
+Route::get('/agregar_carrito/{id_juego}/{id_plataforma}', [AjaxController::class, 'agregarCarrito']);
+Route::get('/ver_carrito', [AjaxController::class, 'verCarrito']);
+Route::get('/add_del_producto/{accion}/{id_juego}/{id_plataforma}', [AjaxController::class, 'addDelProducto']);
 
 Route::get('/cruds', function () {
     return view('cruds');
 });
+
+
 
 Route::resource('categorias', CategoriasController::class);
 Route::resource('comentarios', ComentariosController::class);
@@ -55,3 +57,14 @@ Route::resource('tipos_usuario', Tipos_usuarioController::class);
 Route::resource('users', UsersController::class);
 Route::resource('ventas_detalles', Ventas_detallesController::class);
 Route::resource('ventas', VentasController::class);
+
+Route::get('/contacto', [CorreoController::class, 'contacto']);
+Route::post('/contacto/enviar', [CorreoController::class, 'enviar']);
+
+Route::get('/cargar_entidades/{id_pais}', [EntidadesController::class, 'cargarEntidades']);
+
+Route::get('/cargar_municipios/{id_entidad}', [MunicipiosController::class, 'cargarMunicipios']);
+
+Route::get('/login', [UsersController::class, 'login']);
+
+

@@ -24,7 +24,14 @@
         </div>
         <div class="col-lg-12">
             <div class="item">
-                <h4>ruta</h4><span style="color: white;">{!! $foto_juego->ruta !!}</span>
+                <h4>Imagen</h4>
+                <span style="color: white;">
+                    <img src="{!! asset('storage/juegosfotos/$foto_juego->ruta') !!}" alt="">
+                </span>
+            </div>
+        <div class="col-lg-12">
+            <div class="item">
+                <h4>Ruta</h4><span style="color: white;">{!! $foto_juego->ruta !!}</span>
             </div>
         </div>
         <!-- <div class="col-lg-12">

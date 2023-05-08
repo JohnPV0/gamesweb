@@ -14,7 +14,7 @@
                 <div class="col-lg-8 align-self-center">
                     <ul>
                         <li>
-                            {!! Form::open(['url'=>'/fotos_juegos']) !!}
+                            {!! Form::open(['url'=>'/fotos_juegos', 'enctype'=>'multipart/form-data']) !!}
                             {!! Form::label ('id_juego','Juego') !!}
                             <span>
                                 {!! Form::select ('id_juego', $juegos->pluck('nombre','id')->all() , null
@@ -22,11 +22,12 @@
                             </span>
                         </li>
                         <li>
-                            {!! Form::label('ruta', 'Imagen')!!}
+                            {!! Form::hidden('ruta', 'juegosfotos') !!}
+                            {!! Form::label('foto', 'Imagen')!!}
                             <span>
-                                {!! Form::file('ruta', ['accept' => 'image/*']) !!}
-                                <!--{!! Form::file('ruta', ['accept' => 'image/*', 'onchange' => 'previewImage(event)']) !!}
-                                <img id="preview" src="" alt="Vista previa de la imagen" />-->
+                                {!! Form::file('foto', ['accept' => 'image/*']) !!}
+                                <!-- {!! Form::file('foto', ['accept' => 'image/*', 'onchange' => 'previewImage(event)']) !!}
+                                <img id="preview" src="" alt="Vista previa de la imagen" /> -->
                             </span>
                         </li>
                         <li>
