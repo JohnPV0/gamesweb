@@ -10,6 +10,10 @@ use App\Models\Juegos;
 
 class Fotos_juegosController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('usuarioAdmin');
+    }
     /**
      * Display a listing of the resource.
      */

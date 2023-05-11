@@ -5,7 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Users extends Model
+use Illuminate\Contracts\Auth\Authenticatable;
+
+
+class Users extends Model implements Authenticatable
 {
     use HasFactory;
 
@@ -32,7 +35,7 @@ class Users extends Model
     ];
 
     protected $hidden = [
-        'password',
+        'password', 'remember_token',
     ];
 
     public function paises()
@@ -53,5 +56,35 @@ class Users extends Model
     public function tipos_usuario()
     {
         return $this->belongsTo('App\Models\Tipos_usuario', 'id_tipo_usu', 'id');
+    }
+
+    public function getAuthIdentifierName()
+    {
+        return 'id';
+    }
+
+    public function getAuthIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getAuthPassword()
+    {
+        return $this->password;
+    }
+
+    public function getRememberToken()
+    {
+        return $this->remember_token;
+    }
+
+    public function setRememberToken($value)
+    {
+        $this->remember_token = $value;
+    }
+
+    public function getRememberTokenName()
+    {
+        return 'remember_token';
     }
 }

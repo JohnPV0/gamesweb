@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Storage;
 
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('usuarioAdmin');
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -152,10 +157,5 @@ class UsersController extends Controller
         $user->status = 0;
         $user->save();
         return redirect('/users');
-    }
-
-    public function login()
-    {
-        return view('Users.login');
     }
 }

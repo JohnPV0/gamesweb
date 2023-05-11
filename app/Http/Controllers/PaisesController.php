@@ -8,6 +8,10 @@ use App\Models\Paises;
 
 class PaisesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('usuarioAdmin');
+    }
     /**
      * Display a listing of the resource.
      */

@@ -9,6 +9,10 @@ use App\Models\Categorias;
 
 class JuegosController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('usuarioAdmin');
+    }
     /**
      * Display a listing of the resource.
      */

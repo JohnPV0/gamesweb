@@ -40,9 +40,9 @@ $(document).ready(function() {
     }
 
     $('#buscar').on('click', function(event) {
-            event.preventDefault(); // Evita que el enlace abra una nueva página
-            
-            $('#searchText').focus(); // Enfoca en el input
+        event.preventDefault(); // Evita que el enlace abra una nueva página
+
+        $('#searchText').focus(); // Enfoca en el input
     });
 
 });
@@ -101,28 +101,28 @@ function mostrar(id) {
     }
 }
 
-function agregarCarrito(id_juego, id_plataforma)
-    {
-        event.preventDefault();
-        let ruta = "{{ asset('agregar_carrito') }}/"+id_juego+"/"+id_plataforma;
-        $.ajax({
-            type: "GET",
-            url: ruta,
-            success: function (data) {
-                $("#respuesta").html(data);
-                $("#respuesta").show();
-                setTimeout(function(){
-                    $("#respuesta").hide();
-                }, 4000);
-                $('html, body').animate({
-                    scrollTop: $('#banner').offset().top
-                }, 1000); // La duración de la animación en milisegundos (en este caso, 1 segundo) // 3000 milisegundos = 3 segundos
+function agregarCarrito(id_juego, id_plataforma) {
+    event.preventDefault();
+    let ruta = "{{ asset('agregar_carrito') }}/" + id_juego + "/" + id_plataforma;
+    $.ajax({
+        type: "GET",
+        url: ruta,
+        success: function(data) {
+            $("#respuesta").html(data);
+            $("#respuesta").show();
+            setTimeout(function() {
+                $("#respuesta").hide();
+            }, 4000);
+            $('html, body').animate({
+                scrollTop: $('#banner').offset().top
             },
-            error: function (data) {
-                console.log('Error:', data['error']);
-            }
-        });
-    }
+            1000); // La duración de la animación en milisegundos (en este caso, 1 segundo) // 3000 milisegundos = 3 segundos
+        },
+        error: function(data) {
+            window.location.href = "{{ asset('login') }}";
+        }
+    });
+}
 </script>
 
 </body>

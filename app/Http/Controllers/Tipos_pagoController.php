@@ -8,6 +8,10 @@ use App\Models\Tipos_pago;
 
 class Tipos_pagoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('usuarioAdmin');
+    }
     /**
      * Display a listing of the resource.
      */

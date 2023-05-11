@@ -9,6 +9,10 @@ use App\Models\Paises;
 
 class EntidadesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('usuarioAdmin');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -83,14 +87,5 @@ class EntidadesController extends Controller
         $entidad->status = 0;
         $entidad->save();
         return redirect('/entidades');
-    }
-
-    public function cargarEntidades($id_pais)
-    {
-        $entidades = Entidades::select('id', 'nombre')
-                            ->where('id_pais', $id_pais)
-                            ->where('status', 1)
-                            ->orderBy('nombre')->get();
-        return $entidades;
     }
 }

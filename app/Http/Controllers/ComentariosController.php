@@ -10,6 +10,11 @@ use App\Models\Juegos;
 
 class ComentariosController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('usuarioAdmin');
+    }
+
     /**
      * Display a listing of the resource.
      */

@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{ asset('estilos/assets/css/templatemo-cyborg-gaming.css') }}">
     <link rel="stylesheet" href="{{ asset('estilos/assets/css/owl.css') }}">
     <link rel="stylesheet" href="{{ asset('estilos/assets/css/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('estilos/assets/css/personalizado.css') }}">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
     <!--
 

@@ -11,28 +11,23 @@ use App\Models\Juegos;
 use App\Models\Fotos_juegos;
 use App\Models\Plataformas;
 use App\Models\Juegos_plataformas;
+use Session;
 
 class AjaxController extends Controller
 {
-    public function verJuegos()
-    {
-        $plataformas = Plataformas::where('status', 1)->orderBy('nombre')->get();
 
-        $juegos = Juegos_plataformas::join('fotos_juegos', 'juegos_plataformas.id_juego', '=', 'fotos_juegos.id_juego')
-                        ->where('fotos_juegos.status', 1)
-                        ->select('juegos_plataformas.*', 'fotos_juegos.ruta as ruta')
-                        ->where('juegos_plataformas.status', 1)
-                        ->orderBy('juegos_plataformas.id')
-                        ->get();
-        return view('home')->with('juegos', $juegos)->with('plataformas', $plataformas);
+    public function __construct()
+    {
+        $this->middleware('auth');
     }
+
 
     public function agregarCarrito($id_juego, $id_plataforma)
     {
         //user_id = 1 es que es venta online
         $id_user = 1;
         //Cliente que hace la compra
-        $id_cliente = 3;
+        $id_cliente = auth()->id();
 
         $fecha = date('Y-m-d');
 
@@ -100,7 +95,7 @@ class AjaxController extends Controller
     public function verCarrito()
     {
         $id_user = 1;
-        $id_cliente = 3;
+        $id_cliente = auth()->id();
 
         $tot_venta_carrito = Ventas::where('status', 1)
                     ->where('id_cliente', $id_cliente)
@@ -128,7 +123,7 @@ class AjaxController extends Controller
     public function addDelProducto($accion, $id_juego, $id_plataforma)
     {
         $user_id = 1;
-        $client_id = 3;
+        $client_id = auth()->id();
         $venta = Ventas::where('status', 1)
                 ->where('id_cliente', $client_id)
                 ->first();
@@ -206,5 +201,24 @@ class AjaxController extends Controller
 
         return $registros;
 
+    }
+
+    public function cargarMunicipios($id_entidad) 
+    {
+        $municipios = Municipios::select('id','nombre')
+                        ->where('id_entidad', $id_entidad)
+                        ->where('status', 1)
+                        ->orderBy('nombre')->get();
+        return $municipios;
+    }
+
+    
+    public function cargarEntidades($id_pais)
+    {
+        $entidades = Entidades::select('id', 'nombre')
+                            ->where('id_pais', $id_pais)
+                            ->where('status', 1)
+                            ->orderBy('nombre')->get();
+        return $entidades;
     }
 }

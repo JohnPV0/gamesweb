@@ -7,6 +7,12 @@ use App\Models\Categorias;
 
 class CategoriasController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('usuarioAdmin');
+    } 
+    
     /**
      * Display a listing of the resource.
      */

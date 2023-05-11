@@ -10,6 +10,11 @@ use App\Models\Paises;
 
 class MunicipiosController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('usuarioAdmin');
+    }
+    
     /**
      * Display a listing of the resource.
      */
@@ -94,14 +99,5 @@ class MunicipiosController extends Controller
         $municipio->status = 0;
         $municipio->save();
         return redirect('/municipios');
-    }
-
-    public function cargarMunicipios($id_entidad) 
-    {
-        $municipios = Municipios::select('id','nombre')
-                        ->where('id_entidad', $id_entidad)
-                        ->where('status', 1)
-                        ->orderBy('nombre')->get();
-        return $municipios;
     }
 }
