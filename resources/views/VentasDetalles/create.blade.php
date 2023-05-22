@@ -17,7 +17,7 @@
                             {!! Form::open(['url'=>'/ventas_detalles']) !!}
                             {!! Form::label ('id_venta','Venta') !!}
                             <span>
-                                {!! Form::select ('id_venta',$ventas->pluck('id_cliente'.' '.'fecha','id')->toArray(),null,['placeholder'=>'Seleccionar ...']) !!}
+                                {!! Form::select ('id_venta',$ventas->pluck('id','id')->toArray(),null,['placeholder'=>'Seleccionar ...']) !!}
                             </span>
                         </li>
                         <li>
@@ -42,7 +42,7 @@
                         <li>
                             {!! Form::label('precio_compra', 'Precio de compra') !!}
                             <span>
-                                {!! Form::text('precio_venta', null, ['placeholder' => 'Ingresa el precio de compra',
+                                {!! Form::text('precio_compra', null, ['placeholder' => 'Ingresa el precio de compra',
                                 'oninput' => 'this.value = this.value.replace(/[^0-9.]/g, "").replace(/(\.\d{2})\d+$/g,
                                 "$1");']) !!}    
                             </span>

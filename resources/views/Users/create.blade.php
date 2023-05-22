@@ -50,7 +50,7 @@
                         <li>
                             {!! Form::label ('telefono', 'Telefono') !!}
                             <span>
-                            {!! Form::text ('telefono', null, ['placeholder'=>'Ingresa el nivel', 'onkeypress' =>
+                            {!! Form::text ('telefono', null, ['placeholder'=>'Ingresa el telefono', 'onkeypress' =>
                                 'return event.charCode >= 48 && event.charCode <= 57']) !!}
                             </span>
                         </li>

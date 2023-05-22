@@ -5,10 +5,25 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Correos;
+
 use Illuminate\Support\Facades\Mail;
 
 class CorreoController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('usuarioAdmin')->only('index');
+    }
+
+    public function index()
+    {
+        $correos = Correos::where('status', 1)
+                    ->orderBy('id')->get();
+        return view('Correos.index')->with('correos', $correos);
+    }
+
     public function contacto()
     {
         return view('Correo.contacto');
@@ -26,20 +41,27 @@ class CorreoController extends Controller
             $message->to($destinatario)->subject($asunto);
         });
 
+        
+
         if (!$res) 
         {
             return view('Mensajes.plantilla')
                     ->with('var', '2')
                     ->with('mensaje', 'Error al enviar correo ')
-                    ->with('ruta_boton', 'home')
+                    ->with('ruta_boton', 'inicio')
                     ->with('mensaje_boton', 'Regresar al inicio');
 
         }
 
+        Correos::create([
+            'correo' => $destinatario,
+            'contenido' => $mensaje,
+            'asunto' => $asunto,
+        ]);
         return view('Mensajes.plantilla')
                 ->with('var', '1')
                 ->with('mensaje', 'Correo enviado correctamente')
-                ->with('ruta_boton', 'home')
+                ->with('ruta_boton', 'inicio')
                 ->with('mensaje_boton', 'Regresar al inicio');
     }
 }

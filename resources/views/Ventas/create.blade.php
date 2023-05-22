@@ -23,7 +23,7 @@
                         <li>
                             {!! Form::label ('fecha', 'Fecha') !!}
                             <span>
-                                {!! Form::date('fecha_naci', null, ['placeholder' => 'Ingresa la fecha de nacimiento', 'class' => 'form-control', 'format' => 'Y-m-d']) !!}
+                                {!! Form::date('fecha', null, ['placeholder' => 'Ingresa la fecha de nacimiento', 'class' => 'form-control', 'format' => 'Y-m-d']) !!}
                             </span>
                         </li>
                         <li>

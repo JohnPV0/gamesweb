@@ -48,6 +48,10 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\MDusuarioadmin::class,
         ],
 
+        'adminSuper' => [
+            \App\Http\Middleware\MDadminsuper::class,
+        ],
+
         'usuarioSupervisor' => [
             \App\Http\Middleware\MDusuariosupervisor::class,
         ],

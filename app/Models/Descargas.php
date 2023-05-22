@@ -15,7 +15,8 @@ class Descargas extends Model
         'id_juego',
         'id_usuario',
         'fecha',
-        'status'
+        'status',
+        'id_plataforma'
     ];
 
     public function juegos()
@@ -26,5 +27,10 @@ class Descargas extends Model
     public function usuarios()
     {
         return $this->belongsTo('App\Models\Users', 'id_usuario', 'id');
+    }
+
+    public function plataformas()
+    {
+        return $this->belongsTo('App\Models\Plataformas', 'id_plataforma', 'id');
     }
 }

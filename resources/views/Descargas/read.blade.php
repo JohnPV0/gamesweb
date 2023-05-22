@@ -19,7 +19,7 @@
         </div>
         <div class="col-lg-12">
             <div class="item">
-                <h4>Nombre Juego</h4><span style="color: white;">{!! $comentario->juegos->nombre !!}</span>
+                <h4>Nombre Juego</h4><span style="color: white;">{!! $descarga->juegos->nombre !!}</span>
             </div>
         </div>
         <div class="col-lg-12">

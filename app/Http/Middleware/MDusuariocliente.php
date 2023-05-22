@@ -17,7 +17,7 @@ class MDusuariocliente
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $usuario_actual = session('usuarioactual');
+        $usuario_actual = $usuario_actual = auth()->user();;
         if(isset($usuario_actual)){
             if($usuario_actual->tipoUsuario!=3){
                 return redirect('sin_acceso');

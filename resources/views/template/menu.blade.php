@@ -22,21 +22,31 @@
                         <!-- ***** Logo Start ***** -->
                         <a href="index.html" class="logo">
                             <img src="{{ asset('estilos/assets/images/logo.png') }}" alt="">
+                            
                         </a>
+                        
+                        
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Search End ***** -->
                         <div class="search-input">
+                        
                             @csrf
-                            <form id="search" action="#">
-                                <input type="text" placeholder="Buscar" id='searchText' name="searchKeyword"
-                                    onkeypress="handle" />
+                            <form id="search" action="">
+                            
+                                <input type="text" placeholder="Buscar" id='searchText'/>
                                 <i class="fa fa-search"></i>
+                                
                             </form>
                         </div>
 
                         <!-- ***** Search End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
+                            <li id="cancel-search">
+                                <a href="" onclick="event.preventDefault();">
+                                    <i class="fa fa-x"></i>
+                                </a>
+                            </li>
                             <li>
                                 <a href="{{ asset('inicio') }}" @if(request()->is('inicio')) class="active" @endif>
                                     Inicio
@@ -55,17 +65,32 @@
                                     Cruds
                                 </a>
                             </li>
+                            
                             @endif
 
+                            @if (auth()->user()->id_tipo_usu == 2 || auth()->user()->id_tipo_usu == 1)
+                            <li>
+                                <a href="{{ asset('estadisticas') }}"
+                                @if(request()->is('estadisticas')) class="active" @endif
+                                    data-toggle="tooltip" data-placement="top" title="Estadísticas">
+                                    <i class="fa-solid fa-square-poll-vertical"></i>
+                                </a>
+                            </li>
+                            @endif
                             @endif
                             <li>
                                 <a href="{{ asset('ver_carrito') }}" @if(request()->is('ver_carrito')) class="active"
-                                    @endif>
+                                    @endif data-toggle="tooltip" data-placement="top" title="Mi carrito">
                                     <i class="fa fa-cart-shopping"></i>
                                 </a>
                             </li>
 
                             @guest
+                            <li>
+                                <a href="{{ asset('register') }}" @if(request()->is('register')) class="active" @endif>
+                                    Registrarse
+                                </a>
+                            </li>
                             <li>
                                 <a href="{{ asset('login') }}" @if(request()->is('login')) class="active" @endif>
                                     Iniciar sesión
@@ -86,7 +111,7 @@
                                 </form>
                             </li>
                             <li>
-                                <a href="{{ asset('perfil') }}" @if(request()->is('perfil')) class="active" @endif>
+                                <a href="{{ asset('profile') }}" @if(request()->is('profile')) class="active" @endif>
                                     Perfil
                                     <img src="../storage/usersfotos/{!! auth()->user()->ruta_foto_perfil !!}" alt="">
                                 </a>
@@ -109,4 +134,4 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="page-content">
+                <div class="page-content" id="search-juegos">

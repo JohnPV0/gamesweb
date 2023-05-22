@@ -57,7 +57,7 @@ class Ventas_detallesController extends Controller
     public function show(string $id)
     {
         $venta_detalle = Ventas_detalles::find($id);
-        return view('VentasDetalles.read')->with('ventas_detalle', $venta_detalle);
+        return view('VentasDetalles.read')->with('venta_detalle', $venta_detalle);
     }
 
     /**

@@ -20,7 +20,22 @@ class IndexController extends Controller
                         ->select('juegos_plataformas.*', 'fotos_juegos.ruta as ruta')
                         ->where('juegos_plataformas.status', 1)
                         ->orderBy('juegos_plataformas.id')
+                        ->limit(12)
                         ->get();
         return view('home')->with('juegos', $juegos)->with('plataformas', $plataformas);
+    }
+
+    public function juegos_all()
+    {
+        $plataformas = Plataformas::where('status', 1)->orderBy('nombre')->get();
+
+        $juegos = Juegos_plataformas::join('fotos_juegos', 'juegos_plataformas.id_juego', '=', 'fotos_juegos.id_juego')
+                        ->where('fotos_juegos.status', 1)
+                        ->select('juegos_plataformas.*', 'fotos_juegos.ruta as ruta')
+                        ->where('juegos_plataformas.status', 1)
+                        ->orderBy('juegos_plataformas.id')
+                        ->get();
+
+        return view('juegos_all')->with('juegos', $juegos)->with('plataformas', $plataformas);
     }
 }

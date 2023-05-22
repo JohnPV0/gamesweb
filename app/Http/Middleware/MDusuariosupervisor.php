@@ -17,10 +17,10 @@ class MDusuariosupervisor
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $usuario_actual = session('usuarioactual');
+        $usuario_actual = auth()->user();
         if(isset($usuario_actual)){
-            if($usuario_actual->tipoUsuario!=2){
-                return redirect('sin_acceso');
+            if($usuario_actual->id_tipo_usu!=2){
+                return redirect('inicio');
             }
         }else
             return redirect('login');

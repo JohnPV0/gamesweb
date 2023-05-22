@@ -1,24 +1,6 @@
 @extends('template.master')
 @section('contenido_central')
 
-
-
-    <!-- ***** Banner Start ***** -->
-    <div class="main-banner" id="banner">
-        <div class="row">
-            <div class="col-lg-7">
-                <div class="header-text">
-                    <h6>Bienvenido a Cyborg</h6>
-                    <h4><em>Busca</em> nuestros mejores juegos aqui</h4>
-                    <div class="main-button">
-                        <a href="#" id="buscar">Buscar ahora</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ***** Banner End ***** -->
-
     <!-- ***** Most Popular Start ***** -->
     <div class="row">
         <div class="col-lg-12">
@@ -28,6 +10,11 @@
         </div>
     </div>
 
+    <div class="col-lg-12">
+        <div class="main-border-button">
+            <a href="{{ asset('inicio') }}">Regresar</a>
+        </div>
+    </div>
     <div class="most-popular" id="juegos_generales">
         <div class="row" id="juegos_all">
             <div class="col-lg-12">
@@ -87,7 +74,7 @@
                     </div>
                     <div class="col-lg-12">
                         <div class="main-button">
-                            <a href="{{ asset('juegos_all') }}">Descubrir más juegos</a>
+                            <a href="{{ asset('inicio') }}">Regresar</a>
                         </div>
                     </div>
                 </div>
@@ -117,8 +104,4 @@ function obtenerJuegosByPlataforma(id_plataforma) {
     });
 }
 </script>
-
-
-
-
 @endsection()

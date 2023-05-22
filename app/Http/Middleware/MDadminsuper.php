@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Session;
 use Illuminate\Support\Facades\Auth;
 
-class MDusuarioadmin
+class MDadminsuper
 {
     /**
      * Handle an incoming request.
@@ -19,9 +19,9 @@ class MDusuarioadmin
     {
         $usuario_actual = auth()->user();
         if(isset($usuario_actual)){
-            if($usuario_actual->id_tipo_usu!=1){
+            if($usuario_actual->id_tipo_usu!=2 and $usuario_actual->id_tipo_usu!=1){
                 return redirect('inicio');
-            } 
+            }
         }else
             return redirect('login');
         

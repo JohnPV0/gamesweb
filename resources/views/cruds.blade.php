@@ -159,6 +159,24 @@
                                 </a>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="heading-section">
+                                    <h4><em>COR</em>REOS</h4>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <a href="{!! asset('correos') !!}">
+                                    <div class="item">
+                                        <span><i class="fa fa-eye"></i></span>
+                                        <div class="down-content">
+                                            <h4>Correos</h4>
+                                        </div>
+
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
 
                         <div class="row">
                             <div class="col-lg-12">
